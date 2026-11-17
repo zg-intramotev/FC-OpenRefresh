@@ -1,87 +1,91 @@
 # OpenRefresh
 
-OpenRefresh is an add-on for FreeCAD 1.1. It makes the FreeCAD user interface
-faster and easier to use. OpenRefresh uses two other add-ons: OpenTheme and Nxt.
+OpenRefresh is an add-on for FreeCAD 1.1. It reorganizes the toolbars into two
+rows, can put the workbenches on tabs, and adds commands that start a new part or
+assembly ready to model in. It is built on [OpenTheme](https://github.com/obelisk79/OpenTheme)
+and [Nxt](https://github.com/obelisk79/FreeCAD-Nxt), two add-ons by Obelisk79,
+and needs both of them installed.
 
-![FreeCAD with OpenRefresh. The top row has the file commands and the workbench tabs. The bottom row has the Part Design tools in groups.](docs/media/part-design.png)
+None of your FreeCAD preferences change until you choose them in the setup
+wizard, and the wizard can put them all back.
 
-> **Status:** This is version 0.1.0. It is a test version and it can have
-> problems. To tell us about a problem, see [Problems](#problems).
+![FreeCAD with OpenRefresh, showing the two toolbar rows, the workbench tabs and a simple Part Design model.](docs/media/part-design.png)
+
+> **Status:** 0.1.0, the first release. Expect rough edges. If something
+> breaks, see [Problems](#problems).
 
 ## Functions
 
 ### New part and new assembly
 
-OpenRefresh gives two commands that make a new document:
+**New part** (Ctrl+Alt+P) creates a document that already contains a Part
+Design body and makes that body active, so the next step can be a sketch.
+**New assembly** (Ctrl+Alt+A) does the same with an empty assembly.
 
-- **New part** (Ctrl+Alt+P) makes a new document with an active body.
-- **New assembly** (Ctrl+Alt+A) makes a new document with an active assembly.
+Both open in an isometric view centered on the origin, framed to about 150 mm,
+with the grid on the XY plane. Documents created with **File → New** or from
+the Start page get the same view while they are still empty.
 
-Each new document opens in the isometric view. The origin is at the center of
-the view, and the view shows approximately 150 mm of the model. OpenRefresh shows the
-grid on the XY plane.
-
-![A new part. The view is isometric, the origin is at the center, and the view shows the grid.](docs/media/new-part.png)
+![A new part: isometric view, origin in the middle, grid on.](docs/media/new-part.png)
 
 ### Grid
 
-OpenRefresh shows the grid in each new 3D view. It also does this for documents
-that you make with **File → New** or with the Start page. OpenRefresh also
-shows the grid when you edit a sketch.
+FreeCAD's working-plane grid belongs to the Draft workbench and normally
+disappears when you leave Draft. OpenRefresh turns it on for each new 3D view,
+including while you edit a sketch, and the setup wizard can keep it visible in
+every workbench. Ctrl+Alt+G brings it back in the current view.
 
-To show the grid in the active 3D view, push Ctrl+Alt+G.
-
-![A sketch in edit mode. The view shows the grid behind the sketch.](docs/media/sketcher.png)
+![A sketch open for editing, drawn over the grid.](docs/media/sketcher.png)
 
 ### Two toolbar rows
 
-OpenRefresh puts the toolbars in two rows:
+The top row uses small icons and holds the things you need in every
+workbench: file and edit commands, cut, copy and paste, the OpenRefresh
+buttons, and the workbench tabs. The bottom row uses larger icons for the
+active workbench's own tools, grouped under captions such as Create, Modify
+and Pattern, with the view and measuring tools at the right-hand end under
+Inspect.
 
-- The top row has small icons. It has the file commands, the edit commands and
-  the workbench tabs.
-- The bottom row has large icons. It has the tools of the active workbench, in
-  groups. A caption below each group gives the name of the group.
+![The Part Design row: Structure, Helpers, Create, Modify, Pattern, Nxt and Inspect.](docs/media/toolbar-part-design.png)
 
-OpenRefresh puts the toolbars in the two rows again each time that you change
-the workbench.
+![The Sketcher row while a sketch is open.](docs/media/toolbar-sketcher.png)
 
-![The bottom row in Part Design: Structure, Helpers, Create, Modify, Pattern, Nxt and Inspect.](docs/media/toolbar-part-design.png)
+FreeCAD rebuilds its toolbars every time you switch workbench, and on its own
+it does not keep them on separate rows. OpenRefresh lays the two rows out again
+after each switch, so they stay where you left them.
 
-![The bottom row in the Sketcher, with a sketch in edit mode.](docs/media/toolbar-sketcher.png)
-
-The workbench tabs show seven workbenches: Part Design, Sketcher, Surface,
-Assembly, Draft, FEM and CAM. To open a different workbench, click **+** at the
-end of the tabs.
+With the setup wizard's workbench options applied, the tabs show Part Design,
+Sketcher, Surface, Assembly, Draft, FEM and CAM. The **+** at the end of the
+tab bar lists every other workbench.
 
 ### Menus of related commands
 
-Some buttons in the bottom row have a small triangle in the bottom-right
-corner. Click the triangle to open a menu of related commands. Click the icon
-to start the command that the button shows.
+FreeCAD already groups some commands. The arc button, for instance, holds five
+kinds of arc. OpenRefresh keeps those groups and adds its own where related
+commands used to sit side by side: Pad with Revolution, Loft, Pipe and Helix,
+or Pocket with Groove and the subtractive versions of the same. The Part
+Design row goes from about 45 buttons to 27.
 
-For example, the arc button has five commands in its menu. These are the center
-arc, the 3-point arc and three types of conic arc. After you use a command from
-the menu, the button shows that command.
+A grouped button has a small grey badge with an arrow in its lower-right
+corner. Click the badge to open the menu, or the icon to run the command it
+shows. Once you pick something from the menu, the button shows that command
+until you pick another.
 
-![The menu of the arc button: center arc, 3-point arc, elliptical arc, hyperbolic arc and parabolic arc.](docs/media/dropdown.png)
+![The arc button's menu: center arc, 3-point arc, elliptical, hyperbolic and parabolic arc.](docs/media/dropdown.png)
 
 ### Setup wizard
 
-The setup wizard lets you change some of your FreeCAD preferences. OpenRefresh
-does not change a preference that you do not select. OpenRefresh records each
-change that it makes. Then you can put back all your previous preferences with
-one button.
+The first time FreeCAD starts with OpenRefresh, a setup window offers six
+changes to your preferences, each with its own checkbox: workbench tabs, a
+shorter workbench list, the grid in every workbench, the OpenDark theme, the
+flat icon set, and a body in every document made with **File → New**. Only the
+ones you tick are applied.
 
-![The setup wizard. Each change has a check box and a short description.](docs/media/setup-wizard.png)
+OpenRefresh keeps a record of the previous value of every preference it
+changes. **Restore my previous settings** in the same window uses that record
+to undo all of it, and removes the flat icons it installed.
 
-You can select these changes:
-
-- **Workbench tabs:** Show the workbenches as tabs.
-- **Trim the workbench list:** Show only seven workbenches as tabs.
-- **Grid everywhere:** Show the grid in all the workbenches.
-- **OpenDark theme:** Use the dark theme from OpenTheme.
-- **Flat icon set:** Use flat icons for approximately 380 commands.
-- **Auto-body on File → New:** Add a body to each new document.
+![The setup wizard, with a checkbox and a short description for each change.](docs/media/setup-wizard.png)
 
 ## Commands and shortcuts
 
