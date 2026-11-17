@@ -1,18 +1,18 @@
 # OpenRefresh
 
-OpenRefresh is an add-on for FreeCAD 1.1. It reorganizes the toolbars into two
-rows, can put the workbenches on tabs, and adds commands that start a new part or
-assembly ready to model in. It is built on [OpenTheme](https://github.com/obelisk79/OpenTheme)
-and [Nxt](https://github.com/obelisk79/FreeCAD-Nxt), two add-ons by Obelisk79,
-and needs both of them installed.
+> [!WARNING]
+> **Built on an experimental add-on.** OpenRefresh depends on Nxt, which is
+> still in early development. An Nxt update can break parts of OpenRefresh or
+> change how they behave until OpenRefresh is updated to match. Please report
+> anything that stops working on the
+> [issue tracker](https://github.com/zg-intramotev/FC-OpenRefresh/issues).
 
-None of your FreeCAD preferences change until you choose them in the setup
-wizard, and the wizard can put them all back.
+OpenRefresh is a UI/UX add-on that gives FreeCAD 1.1 the look and feel of a modern CAD program.
+It cuts the interface down to the tools you reach for most, groups them by task, and starts
+every new part ready for its first sketch. Built on [OpenTheme](https://github.com/obelisk79/OpenTheme) 
+and [Nxt](https://github.com/obelisk79/FreeCAD-Nxt).
 
 ![FreeCAD with OpenRefresh, showing the two toolbar rows, the workbench tabs and a simple Part Design model.](docs/media/part-design.png)
-
-> **Status:** 0.1.0, the first release. Expect rough edges. If something
-> breaks, see [Problems](#problems).
 
 ## Functions
 
