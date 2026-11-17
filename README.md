@@ -1,4 +1,4 @@
-# OpenRefresh
+<h1><img src="docs/media/logo.svg" alt="OpenRefresh" width="440"></h1>
 
 > [!WARNING]
 > **Built on an experimental add-on.** OpenRefresh depends on Nxt, which is
