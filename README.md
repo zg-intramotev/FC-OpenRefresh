@@ -1,14 +1,12 @@
 # OpenRefresh
 
-OpenRefresh is a UI refresh layer for FreeCAD 1.1 that sits on top of stock
-FreeCAD: it adds a two-row toolbar with workbench tabs and captioned tool
-panels, one-step new part and assembly commands, and a grid that is always
-there when you need it. Every preference it changes is opt-in and can be undone
-with one click, and it is designed to pair with the [Nxt](#recommended-companions)
-add-on and the [OpenTheme](#recommended-companions) themes.
+A FreeCAD 1.1 add-on built on [OpenTheme](#built-on) and [Nxt](#built-on):
+workbench tabs, a captioned two-row toolbar, and one-key new parts and
+assemblies. It sits on top of stock FreeCAD, and every preference it changes is
+opt-in and can be undone with one click.
 
 > **Status: experimental (0.x).** Expect rough edges, and please
-> [report problems](https://github.com/TODO-owner/OpenRefresh/issues).
+> [report problems](https://github.com/zg-intramotev/FC-OpenRefresh/issues).
 
 <!-- Screenshots: add images under docs/media/ (for example docs/media/overview.png)
      and link them here once they exist. No images are linked yet on purpose. -->
@@ -68,8 +66,10 @@ All commands are in the **OpenRefresh** menu. You can change the shortcuts in
 
 - FreeCAD **1.1.0 or later** (earlier versions are not supported).
 - Python 3.11 or later (bundled with FreeCAD 1.1).
-- Optional: [Nxt](https://github.com/obelisk79/FreeCAD-Nxt) and
-  [OpenTheme](https://github.com/obelisk79/OpenTheme).
+- [Nxt](https://github.com/obelisk79/FreeCAD-Nxt) and
+  [OpenTheme](https://github.com/obelisk79/OpenTheme). Both are required; the
+  Addon Manager installs them with OpenRefresh. If you install manually,
+  install them too (see [Built on](#built-on)).
 
 ## Install
 
@@ -100,7 +100,7 @@ Once OpenRefresh is listed in FreeCAD's official addon index:
 
    ```sh
    cd "<your Mod folder>"
-   git clone https://github.com/TODO-owner/OpenRefresh.git
+   git clone https://github.com/zg-intramotev/FC-OpenRefresh.git
    ```
 
 3. Restart FreeCAD.
@@ -127,16 +127,18 @@ Do these steps in order so FreeCAD is left exactly as you had it:
 If you removed the add-on without turning the toolbar off first and some
 toolbars are missing, switch them back on from *View → Toolbars*.
 
-## Recommended companions
+## Built on
 
-- **[Nxt](https://github.com/obelisk79/FreeCAD-Nxt)**: a model panel and
-  property card for FreeCAD. When it is installed, its tools appear in their own
-  *Nxt* panel on OpenRefresh's bottom row.
+OpenRefresh requires both of these add-ons, by Obelisk79:
+
 - **[OpenTheme](https://github.com/obelisk79/OpenTheme)**: accessible light
-  and dark themes based on the open-color palette. The setup wizard can switch
+  and dark themes based on the open-color palette. The setup wizard switches
   you to OpenDark, which the flat icons are drawn for.
+- **[Nxt](https://github.com/obelisk79/FreeCAD-Nxt)**: a model panel, rollback
+  history, its own fillet and chamfer, and section views. Its tools get their
+  own *Nxt* panel on OpenRefresh's bottom row.
 
-Both are available from the Addon Manager. OpenRefresh works without them.
+The Addon Manager installs both when you install OpenRefresh.
 
 ## Known limitations
 
@@ -150,7 +152,7 @@ Both are available from the Addon Manager. OpenRefresh works without them.
 
 ## Reporting problems
 
-Please open an issue at <https://github.com/TODO-owner/OpenRefresh/issues> and
+Please open an issue at <https://github.com/zg-intramotev/FC-OpenRefresh/issues> and
 include your FreeCAD version (*Help → About FreeCAD → Copy to clipboard*).
 
 If you can, also run the GUI self-test and attach its results. Start FreeCAD

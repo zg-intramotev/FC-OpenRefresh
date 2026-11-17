@@ -50,5 +50,5 @@ Initial release. Requires FreeCAD 1.1.0 or later.
 - GUI self-test (`tests/gui_selftest.py`) that writes `report.json` and
   screenshots to `<user data dir>/openrefresh_selftest/`.
 
-[Unreleased]: https://github.com/TODO-owner/OpenRefresh/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/TODO-owner/OpenRefresh/releases/tag/v0.1.0
+[Unreleased]: https://github.com/zg-intramotev/FC-OpenRefresh/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/zg-intramotev/FC-OpenRefresh/releases/tag/v0.1.0

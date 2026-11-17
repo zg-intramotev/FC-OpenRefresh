@@ -18,12 +18,12 @@ repository root; this file is the only place `TODO` may remain.
 
 | File | Placeholder | Replace with |
 |---|---|---|
-| `package.xml` | `<maintainer email="TODO@example.com">TODO maintainer name</maintainer>` | Maintainer's public name and email |
-| `package.xml` | `<author email="TODO@example.com">TODO maintainer name</author>` | Author's public name and email |
-| `package.xml` | `https://github.com/TODO-owner/OpenRefresh` (repository, readme and bugtracker URLs) | The real repository owner |
-| `README.md` | `https://github.com/TODO-owner/OpenRefresh/issues` (status note and "Reporting problems") | The real issues URL |
-| `README.md` | `https://github.com/TODO-owner/OpenRefresh.git` (manual install) | The real clone URL |
-| `CHANGELOG.md` | `https://github.com/TODO-owner/OpenRefresh/...` (compare and release links) | The real repository owner |
+| `package.xml` | `<maintainer email="323311894+zg-intramotev@users.noreply.github.com">ZG</maintainer>` | Maintainer's public email (name set: ZG) |
+| `package.xml` | `<author email="323311894+zg-intramotev@users.noreply.github.com">ZG</author>` | Author's public email (name set: ZG) |
+| `package.xml` | `https://github.com/zg-intramotev/FC-OpenRefresh` (repository, readme and bugtracker URLs) | The real repository owner |
+| `README.md` | `https://github.com/zg-intramotev/FC-OpenRefresh/issues` (status note and "Reporting problems") | The real issues URL |
+| `README.md` | `https://github.com/zg-intramotev/FC-OpenRefresh.git` (manual install) | The real clone URL |
+| `CHANGELOG.md` | `https://github.com/zg-intramotev/FC-OpenRefresh/...` (compare and release links) | The real repository owner |
 
 Also before tagging:
 

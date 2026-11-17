@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <package format="1" xmlns="https://wiki.freecad.org/Package_Metadata">
   <name>OpenRefresh</name>
-  <description>A UI refresh layer for FreeCAD that adds a two-row toolbar with workbench tabs and captioned tool panels, one-click new part and assembly commands, an always-on grid and a reversible setup wizard.</description>
+  <description>A FreeCAD 1.1 add-on for a cleaner, faster interface. Built on OpenTheme and Nxt.</description>
   <version>0.1.0</version>
   <date>2026-11-17</date>
-  <maintainer email="TODO@example.com">TODO maintainer name</maintainer>
-  <author email="TODO@example.com">TODO maintainer name</author>
+  <maintainer email="323311894+zg-intramotev@users.noreply.github.com">ZG</maintainer>
+  <author email="323311894+zg-intramotev@users.noreply.github.com">ZG</author>
   <license file="LICENSE">LGPL-2.1-or-later</license>
-  <url type="repository" branch="main">https://github.com/TODO-owner/OpenRefresh</url>
-  <url type="readme">https://github.com/TODO-owner/OpenRefresh/blob/main/README.md</url>
-  <url type="bugtracker">https://github.com/TODO-owner/OpenRefresh/issues</url>
+  <url type="repository" branch="main">https://github.com/zg-intramotev/FC-OpenRefresh</url>
+  <url type="readme">https://github.com/zg-intramotev/FC-OpenRefresh/blob/main/README.md</url>
+  <url type="bugtracker">https://github.com/zg-intramotev/FC-OpenRefresh/issues</url>
   <icon>freecad/openrefresh/resources/icons/OpenRefresh.svg</icon>
   <tag>freecad</tag>
   <tag>addon</tag>
@@ -30,8 +30,8 @@
       <icon>freecad/openrefresh/resources/icons/OpenRefresh.svg</icon>
       <freecadmin>1.1.0</freecadmin>
       <pythonmin>3.11</pythonmin>
-      <depend type="addon" optional="true">Nxt</depend>
-      <depend type="addon" optional="true">OpenTheme</depend>
+      <depend type="addon">Nxt</depend>
+      <depend type="addon">OpenTheme</depend>
     </other>
   </content>
 </package>
