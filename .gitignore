@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*.FCStd1
+.DS_Store
+Thumbs.db
+docs/media/*.tmp
