@@ -30,7 +30,7 @@
       <icon>freecad/openrefresh/resources/icons/OpenRefresh.svg</icon>
       <freecadmin>1.1.0</freecadmin>
       <pythonmin>3.11</pythonmin>
-      <depend type="addon">Nxt</depend>
+      <depend type="addon" optional="true">Nxt</depend>
       <depend type="addon">OpenTheme</depend>
     </other>
   </content>

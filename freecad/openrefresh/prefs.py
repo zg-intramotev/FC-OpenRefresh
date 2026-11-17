@@ -21,7 +21,9 @@ DEFAULTS = {
     AUTO_BODY: False,
     SHOW_GRID: True,
     BAND_CAPTIONS: True,
-    TWO_ROW_LAYOUT: True,
+    # Off until the user picks it in the setup wizard: an add-on in FreeCAD's
+    # index must not change FreeCAD's interface without being asked.
+    TWO_ROW_LAYOUT: False,
     FLAT_ICONS_INSTALLED: False,
 }
 

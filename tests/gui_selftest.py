@@ -172,18 +172,43 @@ def toolbar_rows():
 
 
 def two_row_layout_expected():
+    """The add-on's own answer, so the default lives in one place (prefs)."""
     try:
-        return bool(App.ParamGet(
-            "User parameter:BaseApp/Preferences/Mod/OpenRefresh").GetBool("TwoRowLayout", True))
+        from freecad.openrefresh import prefs as or_prefs
+        return bool(or_prefs.two_row_layout())
     except Exception:
-        return True
+        return False
+
+
+def check_untouched(tag):
+    """With the two-row toolbar off, OpenRefresh must leave FreeCAD's toolbars
+    alone (FreeCAD's addon index forbids changing its interface unasked).
+
+    Tested against OpenRefresh's own record of what it hid, not against
+    "nothing is hidden": FreeCAD hides toolbars by itself, e.g. the Sketcher
+    force-hides Structure and Sketcher while a sketch is open
+    (Sketcher Workbench::enterEditMode)."""
+    mw = Gui.getMainWindow()
+    band = mw.findChild(QtWidgets.QToolBar, BAND_NAME)
+    band_shown = band is not None and band.isVisible()
+    try:
+        from freecad.openrefresh import band as or_band
+        hid = list(or_band.harvested())
+    except Exception as exc:
+        hid = ["<could not ask the band: {!r}>".format(exc)]
+    note("hidden_by_freecad_" + tag, sorted(
+        tb.objectName() for tb in mw.findChildren(QtWidgets.QToolBar)
+        if tb.parent() is mw and not tb.isVisible() and tb.objectName()))
+    check("toolbars_untouched_" + tag, not band_shown and not hid,
+          "band shown" if band_shown else ("OpenRefresh hid: {}".format(hid) if hid else "ok"))
 
 
 def check_rows(tag):
     rows = toolbar_rows()
     note("toolbar_rows_" + tag, rows)
     if not two_row_layout_expected():
-        check("two_rows_" + tag, True, "TwoRowLayout is off", skipped=True)
+        check("two_rows_" + tag, True, "two-row toolbar is off", skipped=True)
+        check_untouched(tag)
         return
     ok = len(rows) == 2 and BAND_NAME in rows[1]["bars"]
     check("two_rows_" + tag, ok,
@@ -332,6 +357,12 @@ def check_sketch_edit():
         allowed = set(or_layout.TOP_ROW)
     except Exception:
         allowed = set()
+    if not two_row_layout_expected():
+        for name in ("top_row_clean_in_sketch_edit", "arc_variants_in_band"):
+            check(name, True, "two-row toolbar is off", skipped=True)
+        check_untouched("sketch_edit")
+        note("shot_sketch_edit", grab("03b_sketch_edit"))
+        return
     rows = toolbar_rows()
     note("toolbar_rows_sketch_edit", rows)
     top = rows[0]["bars"] if rows else []

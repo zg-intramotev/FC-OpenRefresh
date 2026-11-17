@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- The two-row toolbar is off until you choose it in the setup wizard, where
+  it is now the first option. Turning it on takes effect at once, and
+  **Restore my previous settings** turns it off and gives FreeCAD's own
+  toolbars back at once. FreeCAD's interface is untouched until you opt in.
+- Nxt is a recommended add-on instead of a required one. OpenRefresh works
+  without it; with it, Nxt's tools get their own group on the bottom row.
+
 ## [0.1.0] - 2026-11-17
 
 Initial release. Requires FreeCAD 1.1.0 or later.

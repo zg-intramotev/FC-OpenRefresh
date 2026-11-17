@@ -111,6 +111,11 @@ GRID_VALUES = (
 #: id, checkbox label, one-line explanation, default.
 #: ``apply()`` takes a dict keyed by these ids.
 OPTIONS = (
+    ("toolbar", "Two-row toolbar",
+     "Small icons on top for the controls every workbench shares, larger "
+     "icons below for the active workbench's tools, grouped and labelled, "
+     "with menus of related commands. Hides FreeCAD's own toolbars while "
+     "it is on.", True),
     ("tabs", "Workbench tabs",
      "Show the workbenches as a row of tabs (icon and text) instead of a "
      "drop-down list. Needs a restart.", True),
@@ -374,10 +379,23 @@ def restore_backup():
         prefs.group().RemBool(prefs.SETUP_DONE)
     except Exception:
         pass
+    # The journal just switched the two-row toolbar off again (if the wizard
+    # had turned it on): give FreeCAD its own toolbars back straight away.
+    _relayout_soon()
     _save_parameters()
     log("setup: restored {} preference(s), removed {} icon(s){}".format(
         len(records) - len(failed), removed, "" if ok else " (with errors)"))
     return ok
+
+
+def _relayout_soon():
+    """Re-apply (or undo) the toolbar layout once the dialog code returns."""
+    try:
+        from PySide import QtCore
+        from . import commands
+        QtCore.QTimer.singleShot(0, commands.relayout)
+    except Exception as exc:
+        log("setup: toolbar layout not refreshed ({})".format(exc))
 
 
 def _save_parameters():
@@ -507,6 +525,15 @@ def apply(choices):
     _safety_copy()
 
     restart = " (after a restart)"
+    if choices.get("toolbar"):
+        try:
+            count = _journal_and_set([
+                (prefs.GROUP, prefs.TWO_ROW_LAYOUT, "bool", True),
+                (prefs.GROUP, prefs.BAND_CAPTIONS, "bool", True)])
+            lines.append("Two-row toolbar: {}".format("on" if count else "already on"))
+            _relayout_soon()
+        except Exception as exc:
+            lines.append("Two-row toolbar: FAILED ({})".format(exc))
     if choices.get("tabs"):
         try:
             _report(lines, "Workbench tabs", _apply_values(TABS_VALUES), restart)

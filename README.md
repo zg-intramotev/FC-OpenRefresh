@@ -1,7 +1,7 @@
 <h1><img src="docs/media/logo.svg" alt="OpenRefresh" width="440"></h1>
 
 > [!WARNING]
-> **Built on an experimental add-on.** OpenRefresh depends on Nxt, which is
+> **Built on an experimental add-on.** OpenRefresh is built to work with Nxt, which is
 > still in early development. An Nxt update can break parts of OpenRefresh or
 > change how they behave until OpenRefresh is updated to match. Please report
 > anything that stops working on the
@@ -39,7 +39,8 @@ every workbench. Ctrl+Alt+G brings it back in the current view.
 
 ### Two toolbar rows
 
-The top row uses small icons and holds the things you need in every
+The two-row toolbar is the first option in the setup wizard, and FreeCAD's
+toolbars stay as they are until you pick it. Once it is on, the top row uses small icons and holds the things you need in every
 workbench: file and edit commands, cut, copy and paste, the OpenRefresh
 buttons, and the workbench tabs. The bottom row uses larger icons for the
 active workbench's own tools, grouped under captions such as Create, Modify
@@ -75,9 +76,9 @@ until you pick another.
 
 ### Setup wizard
 
-The first time FreeCAD starts with OpenRefresh, a setup window offers six
-changes to your preferences, each with its own checkbox: workbench tabs, a
-shorter workbench list, the grid in every workbench, the OpenDark theme, the
+The first time FreeCAD starts with OpenRefresh, a setup window offers seven
+changes to your preferences, each with its own checkbox: the two-row toolbar,
+workbench tabs, a shorter workbench list, the grid in every workbench, the OpenDark theme, the
 flat icon set, and a body in every document made with **File → New**. Only the
 ones you tick are applied.
 
@@ -106,8 +107,9 @@ tab.
 ## Necessary software
 
 - FreeCAD 1.1.0 or a later version.
-- The OpenTheme add-on and the Nxt add-on. The Addon Manager installs them
-  with OpenRefresh.
+- The OpenTheme add-on. The Addon Manager installs it with OpenRefresh.
+- The Nxt add-on is not necessary, but OpenRefresh is made to operate with
+  it. To use the Nxt tools, install Nxt with the Addon Manager.
 
 ## Install
 
@@ -125,8 +127,9 @@ Use this procedure when OpenRefresh is in the FreeCAD addon index.
 
 Use this procedure when OpenRefresh is not in the FreeCAD addon index.
 
-> **NOTE:** You must also install OpenTheme and Nxt. Install them with the
-> Addon Manager before you do this procedure.
+> **NOTE:** You must also install OpenTheme. To use the Nxt tools, also
+> install Nxt. Install them with the Addon Manager before you do this
+> procedure.
 
 1. Start FreeCAD.
 2. Click **View → Panels → Python console**.
@@ -207,15 +210,16 @@ self-test opens and closes some new documents. It does not change your files.
 
 ## OpenTheme and Nxt
 
-OpenRefresh uses two add-ons from Obelisk79. The Addon Manager installs them
-with OpenRefresh.
+OpenRefresh uses two add-ons from Obelisk79. The Addon Manager installs
+OpenTheme with OpenRefresh. Nxt is not necessary, but OpenRefresh is made to
+operate with it.
 
 - **[OpenTheme](https://github.com/obelisk79/OpenTheme)** gives light and dark
   themes with high contrast. The setup wizard can set the OpenDark theme. The
   flat icons are for dark themes.
 - **[Nxt](https://github.com/obelisk79/FreeCAD-Nxt)** gives a model panel, a
-  history bar, a fillet tool, a chamfer tool and section views. Its tools are
-  in the **Nxt** group of the bottom row.
+  history bar, a fillet tool, a chamfer tool and section views. If you install
+  Nxt, its tools are in the **Nxt** group of the bottom row.
 
 ## Limits
 
