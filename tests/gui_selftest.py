@@ -330,6 +330,30 @@ def _check_part():
     note("workbench_after_new_part", state["workbench_before"])
     note("shot_part", grab("02_new_part"))
     check_home_view()
+    check_grid_scale()
+
+
+def check_grid_scale():
+    """With AutoScaleGrid on, the grid's spacing and size match the camera."""
+    try:
+        from freecad.openrefresh import grid_scale, prefs
+        if not prefs.auto_scale_grid():
+            check("grid_scales_with_view", True, "AutoScaleGrid is off", skipped=True)
+            return
+        grid = Gui.Snapper.grid
+        view = Gui.ActiveDocument.ActiveView
+        grid_scale.tick()
+        space, count = grid_scale.target_for(grid, view)
+        width, height = view.getSize()
+        per_px = grid_scale.camera_scale(view)[0]
+        gap_px = grid.space / per_px
+        check("grid_scales_with_view",
+              grid.space == space and grid.numlines == count
+              and grid_scale.MIN_PX <= gap_px <= 2.5 * grid_scale.MIN_PX + 1e-6,
+              "spacing {} mm ({:.1f} px), {} lines, view {}x{}".format(
+                  grid.space, gap_px, grid.numlines, width, height))
+    except Exception as exc:
+        check("grid_scales_with_view", False, repr(exc))
 
 
 def check_home_view():

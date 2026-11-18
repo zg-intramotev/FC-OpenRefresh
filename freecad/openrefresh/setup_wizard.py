@@ -106,6 +106,7 @@ GRID_VALUES = (
     ("Mod/Draft", "gridShowHuman", "bool", False),
     ("Mod/Draft", "coloredGridAxes", "bool", True),
     ("Mod/Draft", "gridBorder", "bool", False),
+    ("Mod/OpenRefresh", prefs.AUTO_SCALE_GRID, "bool", True),
 )
 
 #: id, checkbox label, one-line explanation, default.
@@ -124,8 +125,9 @@ OPTIONS = (
      "tabs. The others stay one click away under the tab bar's “+” "
      "button.", True),
     ("grid", "Grid everywhere",
-     "Show the working-plane grid in every workbench, with a heavier line "
-     "every 10 squares and coloured origin axes.", True),
+     "Show the working-plane grid in every workbench. It fills the view "
+     "and changes spacing as you zoom, with a heavier line every 10 "
+     "squares and coloured origin axes.", True),
     ("theme", "OpenDark theme",
      "Dark colours and stylesheet from the OpenTheme add-on. Needs a "
      "restart.", True),

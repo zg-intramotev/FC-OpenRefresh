@@ -15,6 +15,7 @@ SHOW_GRID = "ShowGridOnNewDocument"
 BAND_CAPTIONS = "BandCaptions"
 TWO_ROW_LAYOUT = "TwoRowLayout"
 FLAT_ICONS_INSTALLED = "FlatIconsInstalled"
+AUTO_SCALE_GRID = "AutoScaleGrid"
 
 DEFAULTS = {
     SETUP_DONE: False,
@@ -25,6 +26,8 @@ DEFAULTS = {
     # index must not change FreeCAD's interface without being asked.
     TWO_ROW_LAYOUT: False,
     FLAT_ICONS_INSTALLED: False,
+    # Off until chosen: it changes how Draft's grid (and grid snapping) behaves.
+    AUTO_SCALE_GRID: False,
 }
 
 
@@ -102,3 +105,12 @@ def flat_icons_installed():
 
 def set_flat_icons_installed(value):
     set_bool(FLAT_ICONS_INSTALLED, value)
+
+
+def auto_scale_grid():
+    return get_bool(AUTO_SCALE_GRID)
+
+
+def set_auto_scale_grid(value):
+    set_bool(AUTO_SCALE_GRID, value)
+

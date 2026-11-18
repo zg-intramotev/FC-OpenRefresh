@@ -76,14 +76,15 @@ class _CmdShowGrid:
     def GetResources(self):
         return {
             "Pixmap": "Draft_Grid",
-            "MenuText": "Show grid",
+            "MenuText": "Grid",
             "Accel": "Ctrl+Alt+G",
-            "ToolTip": "Show the working-plane grid in the active 3D view",
+            "ToolTip": "Toggle: show or hide the working-plane grid in the "
+                       "active 3D view",
         }
 
     def Activated(self):
         from . import workflow
-        workflow.show_grid(True)
+        workflow.toggle_grid()
 
     def IsActive(self):
         return True
@@ -100,6 +101,23 @@ class _CmdToggleAutoBody:
     def Activated(self):
         from . import workflow
         workflow.toggle_auto_body()
+
+    def IsActive(self):
+        return True
+
+
+class _CmdToggleGridScale:
+    def GetResources(self):
+        return {
+            "Pixmap": "Draft_Grid",
+            "MenuText": "Auto-scaling grid",
+            "ToolTip": "Toggle: the grid fills the view and changes spacing "
+                       "as you zoom",
+        }
+
+    def Activated(self):
+        from . import grid_scale
+        grid_scale.toggle()
 
     def IsActive(self):
         return True
@@ -152,6 +170,7 @@ COMMANDS = (
     ("OpenRefresh_NewPart", _CmdNewPart()),
     ("OpenRefresh_NewAssembly", _CmdNewAssembly()),
     ("OpenRefresh_ShowGrid", _CmdShowGrid()),
+    ("OpenRefresh_ToggleGridScale", _CmdToggleGridScale()),
     ("OpenRefresh_ToggleAutoBody", _CmdToggleAutoBody()),
     ("OpenRefresh_ToggleBand", _CmdToggleBand()),
     ("OpenRefresh_Setup", _CmdSetup()),
@@ -159,6 +178,40 @@ COMMANDS = (
 
 _actions = []
 _started = []
+
+
+def _grid_on():
+    from . import workflow
+    return workflow.grid_visible()
+
+
+def _pref(getter_name):
+    def read():
+        from . import prefs
+        return getattr(prefs, getter_name)()
+    return read
+
+
+#: The commands that switch something on or off, and how to read whether it is on.
+CHECKED = {
+    "OpenRefresh_ShowGrid": _grid_on,
+    "OpenRefresh_ToggleGridScale": _pref("auto_scale_grid"),
+    "OpenRefresh_ToggleAutoBody": _pref("auto_body"),
+    "OpenRefresh_ToggleBand": _pref("band_captions"),
+}
+
+
+def sync_checks(*_args):
+    """Tick each on/off action to match what is on now."""
+    for action in _actions:
+        read = CHECKED.get(action.objectName())
+        if read is None:
+            continue
+        try:
+            action.setChecked(bool(read()))
+        except Exception:
+            log("check state for {} failed:\n{}".format(
+                action.objectName(), traceback.format_exc()))
 
 
 # -------------------------------------------------------------------- ui ---
@@ -169,6 +222,7 @@ def _run_named(name, *_args):
         Gui.runCommand(name, 0)
     except Exception:
         log("{} failed:\n{}".format(name, traceback.format_exc()))
+    sync_checks()
 
 
 def _qaction_class():
@@ -200,6 +254,11 @@ def _build_actions():
         if accel:
             action.setShortcut(QtGui.QKeySequence(accel))
             action.setShortcutContext(QtCore.Qt.ApplicationShortcut)
+        action.setCheckable(name in CHECKED)
+        # A menu draws a checkable action's tick box only when it has no
+        # icon; with one, "on" is just a frame round the icon. The toolbar
+        # keeps the icon.
+        action.setIconVisibleInMenu(name not in CHECKED)
         action.triggered.connect(functools.partial(_run_named, name))
         mw.addAction(action)  # keeps the shortcut live even with no menu
         _actions.append(action)
@@ -225,6 +284,7 @@ def _install_menu():
             return  # still there
     menu = QtWidgets.QMenu(MENU_TITLE, bar)
     menu.setObjectName(MENU_NAME)
+    menu.aboutToShow.connect(sync_checks)
     actions = _build_actions()
     for index, action in enumerate(actions):
         if action.objectName() == "OpenRefresh_Setup" and index:
@@ -263,6 +323,7 @@ def refresh():
         _install_toolbar()
     except Exception:
         log("toolbar failed:\n{}".format(traceback.format_exc()))
+    sync_checks()
     relayout()
 
 
@@ -297,6 +358,8 @@ def _first_time():
         from . import workflow
         workflow.install_observer()
         workflow.install_view_watcher()
+        from . import grid_scale
+        grid_scale.install()
     except Exception:
         log("background setup failed:\n{}".format(traceback.format_exc()))
     refresh()

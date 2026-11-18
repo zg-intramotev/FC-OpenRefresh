@@ -33,7 +33,13 @@ the Start page get the same view while they are still empty.
 FreeCAD's working-plane grid belongs to the Draft workbench and normally
 disappears when you leave Draft. OpenRefresh turns it on for each new 3D view,
 including while you edit a sketch, and the setup wizard can keep it visible in
-every workbench. Ctrl+Alt+G brings it back in the current view.
+every workbench. Ctrl+Alt+G turns it on or off in the current view.
+
+Draft's grid has a fixed size, so it looks like a small mat under anything
+large and turns into a grey smear when you zoom in close. With **Auto-scaling
+grid** on, the grid reaches past the edges of the view and its spacing steps
+through 1, 2, 5, 10, 20, 50 mm and so on as you zoom, keeping the lines a
+readable distance apart. Snapping to the grid uses the same spacing.
 
 ![A sketch open for editing, drawn over the grid.](docs/media/sketcher.png)
 
@@ -78,7 +84,7 @@ until you pick another.
 
 The first time FreeCAD starts with OpenRefresh, a setup window offers seven
 changes to your preferences, each with its own checkbox: the two-row toolbar,
-workbench tabs, a shorter workbench list, the grid in every workbench, the OpenDark theme, the
+workbench tabs, a shorter workbench list, the grid in every workbench (auto-scaling), the OpenDark theme, the
 flat icon set, and a body in every document made with **File → New**. Only the
 ones you tick are applied.
 
@@ -90,13 +96,14 @@ to undo all of it, and removes the flat icons it installed.
 
 ## Commands and shortcuts
 
-All these commands are in the **OpenRefresh** menu.
+All these commands are in the **OpenRefresh** menu. A ticked box shows which settings are on.
 
 | Menu command | Function | Shortcut |
 |---|---|---|
 | **New part** | Makes a new document with an active body. | Ctrl+Alt+P |
 | **New assembly** | Makes a new document with an active assembly. | Ctrl+Alt+A |
-| **Show grid** | Shows the grid in the active 3D view. | Ctrl+Alt+G |
+| **Grid** | Sets on or off: the grid in the active 3D view. | Ctrl+Alt+G |
+| **Auto-scaling grid** | Sets on or off: the grid fills the view and changes its spacing when you zoom. | None |
 | **Auto-body on new document** | Sets on or off: add a body to each document from **File → New**. | None |
 | **Grouped toolbar with captions** | Sets on or off: show the bottom row as groups with captions. | None |
 | **OpenRefresh setup…** | Opens the setup wizard. | None |

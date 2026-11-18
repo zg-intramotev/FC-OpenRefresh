@@ -7,8 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Auto-scaling grid** (`OpenRefresh_ToggleGridScale`): the grid reaches
+  past the edges of the view and steps its spacing through 1, 2, 5, 10, 20,
+  50 mm… as you zoom, so minor lines stay 10 to 25 pixels apart. Grid
+  snapping follows the same spacing. Off by default; the setup wizard's grid
+  option turns it on.
+
+- `tests/run_hidden.ps1` runs FreeCAD on a separate, hidden Windows desktop,
+  for the self-test and other scripted checks.
+
 ### Changed
 
+- **Show grid** is now **Grid**, an on/off toggle (still Ctrl+Alt+G), so
+  the grid can be hidden again. The menu's on/off items show a tick box,
+  ticked when they are on.
 - The two-row toolbar is off until you choose it in the setup wizard, where
   it is now the first option. Turning it on takes effect at once, and
   **Restore my previous settings** turns it off and gives FreeCAD's own

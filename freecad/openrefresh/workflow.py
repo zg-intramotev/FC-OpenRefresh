@@ -70,6 +70,30 @@ def show_grid(on=True):
         return False
 
 
+def grid_visible():
+    """True when the active 3D view shows the working-plane grid."""
+    import FreeCADGui as Gui
+    snapper = getattr(Gui, "Snapper", None)
+    if snapper is None:
+        return False
+    try:
+        import Draft
+        view = Draft.get3DView()
+        views, grids = snapper.trackers[0], snapper.trackers[1]
+        if view in views:
+            return bool(getattr(grids[views.index(view)], "Visible", False))
+    except Exception as exc:
+        log("grid state: {}".format(exc))
+    return False
+
+
+def toggle_grid():
+    """Hide the grid in the active 3D view if it shows, else show it."""
+    on = not grid_visible()
+    show_grid(on)
+    return on
+
+
 # ------------------------------------------------------------ view helpers --
 
 #: How much of the model space a new document shows, top to bottom, in mm.
